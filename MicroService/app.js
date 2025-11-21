@@ -73,3 +73,5 @@ app.get('/', (req, res) => res.send('Mobile Validation Microservice is running')
 app.listen(PORT, () => {
   console.log(`Mobile validation microservice listening on port ${PORT}`);
 });
+
+module.exports = app;
