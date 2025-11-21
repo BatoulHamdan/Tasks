@@ -1,18 +1,9 @@
 const request = require('supertest');
-let server;
-let app = require('../app');
-
-beforeAll(() => {
-  server = app.listen(0); 
-});
-
-afterAll(() => {
-  server.close();
-});
+const { app } = require('../app'); 
 
 describe('POST /phoneValidation', () => {
   test('Valid international number returns correct data', async () => {
-    const res = await request(server)
+    const res = await request(app)
       .post('/phoneValidation')
       .send({ mobile: '+14155552671' });
 
@@ -24,7 +15,7 @@ describe('POST /phoneValidation', () => {
   });
 
   test('Invalid number returns 400', async () => {
-    const res = await request(server)
+    const res = await request(app)
       .post('/phoneValidation')
       .send({ mobile: '1234' });
 
@@ -33,7 +24,9 @@ describe('POST /phoneValidation', () => {
   });
 
   test('Missing mobile returns error', async () => {
-    const res = await request(server).post('/phoneValidation').send({});
+    const res = await request(app)
+      .post('/phoneValidation')
+      .send({});
 
     expect(res.statusCode).toBe(400);
     expect(res.body.error).toBe('Missing mobile field');
