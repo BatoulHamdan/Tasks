@@ -1,0 +1,46 @@
+This project contains:
+1-) Client app which is a react application.
+-It consists of 2 components ItemForm and ItemList in the addition of main App component.
+-It Add / Update / Delete / List items.
+
+2-) Microservice app.
+-It validates phone number and gives country.
+
+3-) Server app.
+-API with CRUD for Item.
+-It uses mongodb.
+-Uses microservice to validate phone numbers when creating or updating items.
+
+Prerequisites
+1-) Node.js
+2-) npm
+3-) MongoDB
+
+To Run
+1-) Run MicroService
+cd Microservice
+npm install
+node app.js
+
+2-) Run Server
+cd Server
+npm install
+node app.js
+
+3-) Run Client
+cd client
+npm install
+npm run dev
+
+Handover notes :
+Efficient choices
+-Separation of concerns: phone validation in its own microservice — means other services can re-use it.
+-Using libphonenumber-js: robust offline validation for global numbers (fast and reliable).
+-Simple frontend-api separation: React calls main API only.
+
+Future investments:
+-Operator Name Coverage — currently operatorName defaults to "N/A". To provide real carrier info:
+-Integrate a paid lookup.
+-Cache results calls and cost.
+-Authentication & Authorization — add JWT or session-based auth if the API is public.
+-Frontend UX — validation UX improvements.
