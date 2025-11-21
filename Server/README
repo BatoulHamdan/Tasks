@@ -1,0 +1,14 @@
+Base URL: http://localhost:5000/api
+
+Endpoints:
+1-)GET /api/items
+Returns all items
+
+2-)POST /api/items 
+Validates number using microservice then add it if valid.
+
+3-)PUT /api/items/:id
+Validates number using microservice then update it.
+
+4-)DELETE /api/items/:id
+Deletes item.

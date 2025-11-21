@@ -11,7 +11,8 @@ const ItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: String,
   mobileNumber: String,
-  mobileDetails: MobileDetailsSchema
+  mobileDetails: MobileDetailsSchema,
+  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', default: null }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Item', ItemSchema);
