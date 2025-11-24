@@ -21,8 +21,6 @@ mongoose.connect(MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Mongo connected'))
   .catch((err) => console.error('Mongo Error:', err));
 
-const PORT = process.env.PORT || 5000;
-
 if (process.env.NODE_ENV !== 'test') {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`Main API listening on port ${PORT}`));

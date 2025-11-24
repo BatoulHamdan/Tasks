@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { parsePhoneNumberFromString, getCountryCallingCode } = require('libphonenumber-js');
+const { parsePhoneNumberFromString } = require('libphonenumber-js');
 const cors = require('cors');
 
 const app = express();

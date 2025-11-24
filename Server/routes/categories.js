@@ -5,27 +5,23 @@ const Category = require('../Models/Category');
 router.post('/', async (req, res) => {
   try {
     const { name } = req.body;
+    if (!name) return res.status(400).json({ error: "Name is required" });
 
-    if (!name)
-      return res.status(400).json({ error: "name required" });
+    const category = new Category({ name });
+    await category.save();
 
-    const cat = new Category({ name });
-    await cat.save();
-
-    res.json(cat);
+    res.json(category);
 
   } catch (err) {
-    if (err.code === 11000)
-      return res.status(400).json({ error: "Category exists" });
-
+    if (err.code === 11000) return res.status(400).json({ error: "Category already exists" });
     res.status(500).json({ error: "Server error" });
   }
 });
 
 router.get('/', async (req, res) => {
   try {
-    const cats = await Category.find().sort({ name: 1 });
-    res.json(cats);
+    const categories = await Category.find().sort({ name: 1 });
+    res.json(categories);
   } catch (err) {
     console.error("Category fetch error:", err.message);
     res.status(500).json({ error: "Server error" });
